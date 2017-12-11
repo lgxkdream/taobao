@@ -1,0 +1,184 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="/struts-tags" prefix="s"%>	
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<title><s:property value="model.pname"/></title>
+<link href="favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+<link href="${pageContext.request.contextPath}/css/common.css" rel="stylesheet" type="text/css"/>
+<link href="${pageContext.request.contextPath}/css/product.css" rel="stylesheet" type="text/css"/>
+<link href="${pageContext.request.contextPath}/css/image.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="js/jquery.jqzoom.js"></script>
+<script type="text/javascript" src="js/image.js"></script>
+<script>
+    function increaseCount(){
+		var newcount = parseInt(document.getElementById("count").value,10)+1;
+		document.getElementById("count").value = newcount;	
+	}
+    function decreaseCount(){
+		var newcount = parseInt(document.getElementById("count").value,10);
+		if(newcount == 1){
+			document.getElementById("count").value = newcount;	
+		}else{
+			newcount = newcount - 1;
+		    document.getElementById("count").value = newcount;	
+		}
+	}
+    
+    function saveCart(){
+    	document.getElementById("cartForm").submit();
+    }
+</script>
+</head>
+<body>
+
+<div class="container header">
+
+	<%@ include file="header.jsp"%>
+
+</div><div class="container productContent">
+		<div class="span6">
+			<div class="hotProductCategory">
+					   <s:iterator var="c" value="#session.clist">
+						<dl>
+							<dt>
+								<a href="${ pageContext.request.contextPath }/product_findByCid.action?cid=<s:property value="#c.cid"/>&page=1"><s:property value="#c.cname"/></a>
+							</dt>
+							      <s:iterator var="cs" value="#c.categorySeconds">
+									<dd>
+										<a href="${ pageContext.request.contextPath }/product_findByCsid.action?csid=<s:property value="#cs.csid"/>&page=1"><s:property value="#cs.csname"/></a>
+									</dd>
+								  </s:iterator>
+						</dl>
+						
+		    	</s:iterator>			
+						
+			</div>
+			
+
+		</div>
+		<div class="span18 last">
+			<br/>
+			
+			<div id="preview" class="productImage"> <span class="jqzoom"><img jqimg="${pageContext.request.contextPath}/<s:property value="model.image"/>" src="${pageContext.request.contextPath}/<s:property value="model.image"/>" width="302" height="370" border="2" /></span> </div>
+			
+			<%--<div class="productImage">
+			      <a title="" style="outline-style: none; text-decoration: none;" id="zoom" href="" rel="gallery">
+						<img width="302" height="370" src="${pageContext.request.contextPath}/<s:property value="model.image"/>"
+						 onmouseout="width=302,height=370" onmouseover="width=360,height=430" style="position:absolute;z-Index=99"/>
+				  </a>
+			</div>
+			--%>
+			
+			<%--<div class="productImage">
+					<a title="" style="outline-style: none; text-decoration: none;" id="zoom" href="http://image/r___________renleipic_01/bigPic1ea8f1c9-8b8e-4262-8ca9-690912434692.jpg" rel="gallery">
+						<div class="zoomPad">
+						<img style="opacity: 1;" title="" class="medium" src="${pageContext.request.contextPath}/<s:property value="model.image"/>"/>
+						<div style="display: block; top: 0px; left: 162px; width: 0px; height: 0px; position: absolute; border-width: 1px;" class="zoomPup">
+						</div>
+						<div style="position: absolute; z-index: 5001; left: 312px; top: 0px; display: block;" class="zoomWindow">
+						<div style="width: 368px;" class="zoomWrapper">
+						<div style="width: 100%; position: absolute; display: none;" class="zoomWrapperTitle">
+						</div>
+						<div style="width: 0%; height: 0px;" class="zoomWrapperImage">
+						<img src="%E5%B0%9A%E9%83%BD%E6%AF%94%E6%8B%89%E5%A5%B3%E8%A3%852013%E5%A4%8F%E8%A3%85%E6%96%B0%E6%AC%BE%E8%95%BE%E4%B8%9D%E8%BF%9E%E8%A1%A3%E8%A3%99%20%E9%9F%A9%E7%89%88%E4%BF%AE%E8%BA%AB%E9%9B%AA%E7%BA%BA%E6%89%93%E5%BA%95%E8%A3%99%E5%AD%90%20%E6%98%A5%E6%AC%BE%20-%20Powered%20By%20Mango%20Team_files/6d53c211-2325-41ed-8696-d8fbceb1c199-large.jpg" style="position: absolute; border: 0px none; display: block; left: -432px; top: 0px;"/>
+						</div>
+						</div>
+						</div>
+						<div style="visibility: hidden; top: 129.5px; left: 106px; position: absolute;" class="zoomPreload">
+						Loading zoom
+						</div>
+						</div>
+					</a>
+				
+			</div>
+			--%>
+			<div class="name"><s:property value="model.pname"/></div>
+			<div class="desc"><s:property value="model.pdesc"/><br/></div>
+			<%--<div class="sn">
+				<div>商品编号：<s:property value="model.pid"/></div>
+			</div>
+			--%>
+			<div class="sn"></div>
+			
+			<div class="info">
+			    <dl>	
+			        <dt>价格：</dt>
+					<dd>
+						
+						 <del>￥<s:property value="formatDouble(model.market_price)" /></del>			
+					</dd>
+				</dl>
+				<br/>
+				<dl>
+					<dt>淘淘价：</dt>
+					<dd>
+						<font size="5" color="#fa5a14">￥</font>&nbsp;<strong><s:property value="formatDouble(model.shop_price)" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+					</dd>
+				</dl>
+				<dl>
+					<dt>促销：</dt>
+					<dd>
+							<a target="_blank" title="限时抢购 (2014-07-30 ~ 2015-01-01)">限时抢购</a>
+					</dd>
+				</dl>
+				<dl>
+						<dt>    </dt>
+						<dd>
+							<span>    </span>
+						</dd>
+				</dl>
+			</div>
+			<form id="cartForm" action="${pageContext.request.contextPath}/cart_addCart.action" method="post">
+				<input type="hidden" name="pid" value="<s:property value="model.pid"/>"/>
+				<div class="action">
+					
+						<dl class="quantity">
+							<dt>购买数量:</dt>
+							<dd>
+								<input id="count" name="count" value="1" maxlength="4" onpaste="return false;" type="text" readonly="readonly"/>
+								<div>
+									<span id="increase" class="increase" onclick="increaseCount()"></span>
+									<span id="decrease" class="decrease" onclick="decreaseCount()"></span>
+								</div>
+							</dd>
+							<dd>
+								件
+							</dd>
+						</dl>
+					
+					<div class="buy">
+							<input id="addCart" class="addCart" value="加入购物车" type="button" onclick="saveCart()"/>
+				   </div>
+				</div>
+			</form>	
+				
+			<div id="bar" class="bar">
+				<ul>
+						<li id="introductionTab">
+							<a href="#introduction">商品介绍</a>
+						</li>
+						
+				</ul>
+			</div>
+				
+				<div id="introduction" name="introduction" class="introduction">
+					<div class="title">
+						<strong><s:property value="model.pdesc"/></strong>
+					</div>
+					<div>
+						<img width="700px" src="${pageContext.request.contextPath}/<s:property value="model.image"/>"/>
+					</div>
+				</div>
+				
+				
+				
+		</div>
+	</div>
+<div class="container footer">
+<%@ include file="footer.jsp"%>
+</div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.itcast.shop.cart.vo.Cart" table="cart">
+        <id name="cartid">
+            <generator class="native"/>
+        </id>
+        <property name="total"/>
+        <set name="cartItems" order-by="ciid" lazy="false" cascade="delete">
+             <key column="cartid" />
+             <one-to-many class="com.itcast.shop.cart.vo.CartItem"/>
+        </set>  
+        <many-to-one name="user" lazy="false" class="com.itcast.shop.user.vo.User" column="uid"/>
+    </class>
+</hibernate-mapping>
+

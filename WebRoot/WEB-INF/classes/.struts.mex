@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Struts2Diagram version="2.0">
+  <package name="shop" location="0,0" size="0,0">
+    <action name="index" location="0,0" size="0,0">
+      <result name="index">
+        <resourceEdge source="index" routing="0" target="index.jsp" />
+      </result>
+    </action>
+    <action name="user_*" location="0,0" size="0,0">
+      <result name="registPage">
+        <resourceEdge source="registPage" routing="0" target="regist.jsp" />
+      </result>
+      <result name="msg">
+        <resourceEdge source="msg" routing="0" target="msg.jsp" />
+      </result>
+      <result name="loginPage">
+        <resourceEdge source="loginPage" routing="0" target="login.jsp" />
+      </result>
+      <result name="login">
+        <resourceEdge source="login" routing="0" target="login.jsp" />
+      </result>
+      <result name="loginSuccess" />
+      <result name="logout" />
+      <result name="codeFail">
+        <resourceEdge source="codeFail" routing="0" target="regist.jsp" />
+      </result>
+    </action>
+    <action name="checkImg" location="0,0" size="0,0" />
+  </package>
+  <webResource name="index.jsp" path="/WEB-INF/jsp/index.jsp" location="0,0" size="0,0" />
+  <webResource name="regist.jsp" path="/WEB-INF/jsp/regist.jsp" location="0,0" size="0,0" />
+  <webResource name="msg.jsp" path="/WEB-INF/jsp/msg.jsp" location="0,0" size="0,0" />
+  <webResource name="login.jsp" path="/WEB-INF/jsp/login.jsp" location="0,0" size="0,0" />
+</Struts2Diagram>
+

@@ -1,0 +1,66 @@
+/* Clear Fix */
+div.productContent .clearfix:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+div.productContent .clearfix {
+	display: inline-block;
+}
+
+/* Hide from IE Mac */
+div.productContent .clearfix {
+	display: block;
+}
+
+/*图片放大镜样式*/
+div.productContent .jqzoom {
+	float: left;
+	border: none;
+	position: relative;
+	padding: 0px;
+	cursor: move;
+	margin: 0px;
+	display: block;
+}
+
+div.productContent .zoomdiv {
+	z-index: 100;
+	position: absolute;
+	/*top: 0px;
+	left: 0px;*/
+	width: 302px;
+	height: 370px;
+	background: #ffffff;
+	border: 1px solid #CCCCCC;
+	display: none;
+	text-align: center;
+	overflow: hidden;
+}
+
+div.productContent .jqZoomPup {
+	z-index: 10;
+	visibility: hidden;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 20px;
+	height: 20px;
+	border: 1px solid #aaa;
+	background: #ffffff /*url(../images/zoom.png) 50% center no-repeat*/;
+	opacity: 0.5;
+	-moz-opacity: 0.5;
+	-khtml-opacity: 0.5;
+	filter: alpha(Opacity =   50);
+}
+
+/*图片小图预览列表
+div.productContent .spec-preview {
+	width: 300px;
+	height: 370px;
+	border: 1px solid #DFDFDF;
+	overflow: hidden;
+}*/
